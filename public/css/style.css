@@ -22,8 +22,6 @@ h1 {
     margin: 8px 0;
     max-width: 80%;
     word-wrap: break-word;
-
-    background-color:  #31BE6D;
     border-radius: 0px 5px 5px 5px;
 }
 .mymessages {
@@ -77,5 +75,9 @@ clear: both;
   background: #e1ffc7;
   border-radius: 0px 5px 5px 5px;
   float: left;
+
+}
+.small{
+  font-size: 10px;
 
 }
