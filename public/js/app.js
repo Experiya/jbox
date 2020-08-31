@@ -3,9 +3,9 @@
  var socket = io();
  // listen for server connection
  // get query params from url
- var name = getQueryVariable("name") || 'Samidha Singh';
+ var name = getQueryVariable("name") || 'Ev';
  var room = getQueryVariable("room") || 'No Room Selected';
-//var name="Samidha"
+//var name="Ev"
 var room="123"
  $(".room-title").text(room);
  // fires when client successfully conencts to the server
