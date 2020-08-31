@@ -1,10 +1,12 @@
  //@JC
+ //@JC
  var socket = io();
  // listen for server connection
  // get query params from url
- var name = getQueryVariable("name") || 'Anonymous';
+ var name = getQueryVariable("name") || 'Samidha Singh';
  var room = getQueryVariable("room") || 'No Room Selected';
-
+//var name="Samidha"
+var room="123"
  $(".room-title").text(room);
  // fires when client successfully conencts to the server
  socket.on("connect", function() {
@@ -65,7 +67,6 @@
  });
 
  socket.on("userSeen", function(msg) {
-
   // if (msg.user == name) {
      // read message
      // show messags only to user who has typied
@@ -90,12 +91,12 @@
    console.log(message.text);
    // insert messages in container
    var $messages = $(".messages");
-   var $message = $('<li class = ""></li>');
+   var $message = $('<span class = ""></span>');
    $message.append("<div class='text-align:right;'>");
    var momentTimestamp = moment.utc(message.timestamp).local().format("h:mm a");
    //$(".messages").append($('<p>').text(message.text));
 
-   $message.append("<strong>" + momentTimestamp + " " + message.name + "</strong>");
+   $message.append("<small>"+momentTimestamp + " " + message.name+"</small>");
    $message.append("<p>" + message.text + "</p>");
    $messages.append($message);
    $message.append("</div>");
@@ -148,17 +149,22 @@
   
 
    // show user messageForm
-   var $messages = $(".messages");
-   var $message = $('<li class = "text-right  p-1 time_right"></li>');
 
+   var $message = $('<span class = "text-right"></span>');
+   var $messages = $(".messages");
    var momentTimestamp = moment().format("h:mm a");
+$message.append("<small>"+momentTimestamp + " " + name+"</small>");
+   
+   //$message.append("<strong>"+momentTimestamp+"</strong>");
    // $(".messages").append($('<p>').text(message.text));
-   $message.append("<strong>" + momentTimestamp + " " + name + "</strong>");
+   
    //$message.append("<p>" + $message1.val()+ "</p>");
-   $message.append($("<p>", {
+   $message.append($("<div>", {
      class: "mymessages",
      text: $message1.val()
    }));
+
+
    $messages.append($message);
    $message1.val('');
    // manage autoscroll
@@ -174,25 +180,13 @@
 
 
 //......................................................
-chatForm.addEventListener('submit', e => {
-  e.preventDefault();
 
-  // Get message text
-  const msg = e.target.elements.msg.value;
-
-  // Emit message to server
-  socket.emit('messagebox', msg);
-
-  // Clear input
-  e.target.elements.msg.value = '';
-  e.target.elements.msg.focus();
-});
 
  // notification message
  function notifyMe(msg) {
    // Let's check if the browser supports notifications
    if (!("Notification" in window)) {
-     alert("This browser does not support desktop notification,try Chromium!");
+     alert("This browser does not support desktop notification");
    }
 
    // Let's check whether notification permissions have already been granted
@@ -244,3 +238,4 @@ chatForm.addEventListener('submit', e => {
    // At last, if the user has denied notifications, and you
    // want to be respectful there is no need to bother them any more.
  }
+
